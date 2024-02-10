@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'category',
+    'customer',
+    'order',
+    'product',
+    'transaction'
 ]
 
 MIDDLEWARE = [
@@ -83,15 +88,13 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'ENFORCE_SCHEMA': False,
-        'NAME': 'Sample',
+        'NAME': 'ecommerce',
+        'ENFORCE_SCHEMA': False,  # Set to True if you want schema validation
         'CLIENT': {
-            'host': 'localhost',
-            'port': 27017,
-        },
+            'host': 'mongodb://localhost:27017/',
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
