@@ -1,8 +1,8 @@
 # product/views.py
-
+from rest_framework.decorators import api_view
 from rest_framework import generics
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, CartItem
+from .serializers import ProductSerializer, CartItemSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
@@ -17,3 +17,13 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
 class ProductRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+@permission_classes([IsAuthenticated])
+class ProductAddToCartListCreateAPIView(generics.ListCreateAPIView):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+
+@permission_classes([IsAuthenticated])
+class ProductCartItemDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
